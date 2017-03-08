@@ -316,6 +316,7 @@
 				73C743981E6BF64800BA978A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

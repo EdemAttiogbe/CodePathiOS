@@ -10,7 +10,8 @@ import UIKit
 
 class TipMETableViewController: UITableViewController {
     
-    @IBOutlet weak var tipPercentageCell: UITableViewCell!
+    
+    @IBOutlet weak var tipAmountDisplay: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +23,8 @@ class TipMETableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
         self.title = "TipME Settings";
-        print("TipME settings screen is loading");
+        tipAmountDisplay.text = "Default Amount >";
+        print("TipME settings screen has loading");
     }
     
     override func didReceiveMemoryWarning() {
@@ -50,7 +52,11 @@ class TipMETableViewController: UITableViewController {
         return(1);
     }
     
-    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Tip Percentage Cell", for: indexPath) as! UITableViewCell;
+        return(cell);
+    }
 
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
