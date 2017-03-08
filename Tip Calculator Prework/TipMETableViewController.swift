@@ -54,7 +54,7 @@ class TipMETableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TipPercentageCell", for: indexPath) as! UITableViewCell;
+        let cell = self.tableView.dequeueReusableCell(withIdentifier: "TipPercentageCell", for: indexPath) as! UITableViewCell;
         return(cell);
     }
 
