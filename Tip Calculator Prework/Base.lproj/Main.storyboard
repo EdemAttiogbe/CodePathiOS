@@ -118,7 +118,7 @@
         <!--Tip Settings-->
         <scene sceneID="A9i-6c-l96">
             <objects>
-                <viewController title="Tip Settings" id="GTb-Q0-lUM" customClass="TipMETableViewController" customModule="TipME" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Tip Settings" id="GTb-Q0-lUM" customClass="TipMETableViewController" customModule="TipME" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Hh1-Mf-A77">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -143,7 +143,7 @@
                         <outlet property="tipPercentageCell" destination="0gi-11-gFh" id="gAm-l8-1cK"/>
                         <segue destination="Y20-IE-z47" kind="push" identifier="tipPickerSegue" id="oRp-us-g68"/>
                     </connections>
-                </viewController>
+                </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xe3-ub-YDH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1187" y="137"/>
