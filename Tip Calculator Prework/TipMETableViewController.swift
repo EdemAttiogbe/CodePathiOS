@@ -24,7 +24,8 @@ class TipMETableViewController: UITableViewController {
         
         self.title = "TipME Settings";
         tipAmountDisplay.text = "Default Amount >";
-        print("TipME settings screen has loading");
+        print("TipME settings screen has loaded");
+        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "TipPercentageCell");
     }
     
     override func didReceiveMemoryWarning() {
@@ -54,7 +55,7 @@ class TipMETableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = self.tableView.dequeueReusableCell(withIdentifier: "TipPercentageCell", for: indexPath) as! UITableViewCell;
+        let cell = self.tableView.dequeueReusableCell(withIdentifier: "TipPercentageCell", for: indexPath);
         return(cell);
     }
 

@@ -11,7 +11,7 @@ import UIKit
 class TipPickerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
 
     @IBOutlet weak var tipPercentagePicker: UIPickerView!//IB Outlet
-    var percentagesPicks: [Int] = [Int]();//Create an array that will hold all the available percentages for the picker
+    var percentagesPicks: [String] = [String]();//Create an array that will hold all the available percentages for the picker
     
     var tipPercentagesDict = [String: AnyObject]();//This dictionary represents the possible Tip percentage values to choose from.  Loaded from 'TipPercentages.plist'
     
@@ -30,10 +30,12 @@ class TipPickerViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         let tipfilePath: String? = Bundle.main.path(forResource: "TipPercentages", ofType: "plist");//path to 'TipPercentages.plist'
         
         if let path = tipfilePath {
+            print("Obtained path to TipPercentages plist file: \(tipfilePath ?? "No Plist Found")");
             let tipPercentageXMLData = FileManager.default.contents(atPath: path)!//Obtain the XML data representation of the Tip Percentagages plist file
             
             do{//Convert the Tip Percentages plist into a Dictionary
                 tipPercentagesDict = try PropertyListSerialization.propertyList(from: tipPercentageXMLData, options: .mutableContainersAndLeaves, format: &tipPlistFormat) as! [String: AnyObject];
+                print("Added all the available tip percentages into a Dictionary");
             }
             catch{
                 print("Error converting TipPercentages plist into a Dictionary: \(error), format: \(tipPercentageXMLData)");
@@ -42,10 +44,12 @@ class TipPickerViewController: UIViewController, UIPickerViewDelegate, UIPickerV
             
             //Load the tip Amounts into an array
             let anyTipAmounts = noTipsAmounts();
-            if anyTipAmounts{
-                for tipAmounts in tipPercentagesDict.values{
-                    percentagesPicks.append(tipAmounts as! Int);
+            if !anyTipAmounts{
+                for tipAmounts in tipPercentagesDict.keys{
+                    percentagesPicks.append(tipAmounts);
                 }
+                print("Added tip amounts to tip picker");
+                print(percentagesPicks);
             }
         }
     }
@@ -66,7 +70,7 @@ class TipPickerViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return( percentagesPicks[row] as! String);
+        return( percentagesPicks[row]);
     }
     
     func noTipsAmounts() -> Bool {
