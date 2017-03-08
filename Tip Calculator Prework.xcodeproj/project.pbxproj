@@ -12,16 +12,22 @@
 		73C7438D1E6BF64800BA978A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73C7438B1E6BF64800BA978A /* Main.storyboard */; };
 		73C7438F1E6BF64800BA978A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73C7438E1E6BF64800BA978A /* Assets.xcassets */; };
 		73C743921E6BF64800BA978A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73C743901E6BF64800BA978A /* LaunchScreen.storyboard */; };
+		73C7439E1E6D800E00BA978A /* TipPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C7439D1E6D800E00BA978A /* TipPickerViewController.swift */; };
+		73C743A01E6DD89900BA978A /* TipPercentages.plist in Resources */ = {isa = PBXBuildFile; fileRef = 73C7439F1E6DD89900BA978A /* TipPercentages.plist */; };
+		73C743A21E6DDBE300BA978A /* TipMETableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C743A11E6DDBE300BA978A /* TipMETableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		73C743841E6BF64800BA978A /* Tip Calculator Prework.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tip Calculator Prework.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		73C743841E6BF64800BA978A /* TipME.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TipME.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73C743871E6BF64800BA978A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		73C743891E6BF64800BA978A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		73C7438C1E6BF64800BA978A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		73C7438E1E6BF64800BA978A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		73C743911E6BF64800BA978A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		73C743931E6BF64800BA978A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		73C7439D1E6D800E00BA978A /* TipPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TipPickerViewController.swift; sourceTree = "<group>"; };
+		73C7439F1E6DD89900BA978A /* TipPercentages.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TipPercentages.plist; sourceTree = "<group>"; };
+		73C743A11E6DDBE300BA978A /* TipMETableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TipMETableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,7 +52,7 @@
 		73C743851E6BF64800BA978A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				73C743841E6BF64800BA978A /* Tip Calculator Prework.app */,
+				73C743841E6BF64800BA978A /* TipME.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -60,6 +66,9 @@
 				73C7438E1E6BF64800BA978A /* Assets.xcassets */,
 				73C743901E6BF64800BA978A /* LaunchScreen.storyboard */,
 				73C743931E6BF64800BA978A /* Info.plist */,
+				73C7439D1E6D800E00BA978A /* TipPickerViewController.swift */,
+				73C7439F1E6DD89900BA978A /* TipPercentages.plist */,
+				73C743A11E6DDBE300BA978A /* TipMETableViewController.swift */,
 			);
 			path = "Tip Calculator Prework";
 			sourceTree = "<group>";
@@ -67,9 +76,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		73C743831E6BF64800BA978A /* Tip Calculator Prework */ = {
+		73C743831E6BF64800BA978A /* TipME */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 73C743961E6BF64800BA978A /* Build configuration list for PBXNativeTarget "Tip Calculator Prework" */;
+			buildConfigurationList = 73C743961E6BF64800BA978A /* Build configuration list for PBXNativeTarget "TipME" */;
 			buildPhases = (
 				73C743801E6BF64800BA978A /* Sources */,
 				73C743811E6BF64800BA978A /* Frameworks */,
@@ -79,9 +88,9 @@
 			);
 			dependencies = (
 			);
-			name = "Tip Calculator Prework";
+			name = TipME;
 			productName = "Tip Calculator Prework";
-			productReference = 73C743841E6BF64800BA978A /* Tip Calculator Prework.app */;
+			productReference = 73C743841E6BF64800BA978A /* TipME.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -114,7 +123,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				73C743831E6BF64800BA978A /* Tip Calculator Prework */,
+				73C743831E6BF64800BA978A /* TipME */,
 			);
 		};
 /* End PBXProject section */
@@ -124,6 +133,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				73C743A01E6DD89900BA978A /* TipPercentages.plist in Resources */,
 				73C743921E6BF64800BA978A /* LaunchScreen.storyboard in Resources */,
 				73C7438F1E6BF64800BA978A /* Assets.xcassets in Resources */,
 				73C7438D1E6BF64800BA978A /* Main.storyboard in Resources */,
@@ -138,7 +148,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				73C7438A1E6BF64800BA978A /* ViewController.swift in Sources */,
+				73C743A21E6DDBE300BA978A /* TipMETableViewController.swift in Sources */,
 				73C743881E6BF64800BA978A /* AppDelegate.swift in Sources */,
+				73C7439E1E6D800E00BA978A /* TipPickerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,7 +309,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		73C743961E6BF64800BA978A /* Build configuration list for PBXNativeTarget "Tip Calculator Prework" */ = {
+		73C743961E6BF64800BA978A /* Build configuration list for PBXNativeTarget "TipME" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				73C743971E6BF64800BA978A /* Debug */,
