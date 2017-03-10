@@ -8,6 +8,12 @@
 
 import UIKit
 
+//This protocol will be used to pass the picked default percentage back to the TipMETableViewController for saving to the NSUserDefaults keystore
+//protocol TipPickerDelegate{
+   
+//    func didChooseNewDefaultTipPercent(picker: TipPickerViewController, pickedKeyValue: String);//Used to transfer both the
+//}
+
 class TipPickerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UINavigationControllerDelegate {
 
     @IBOutlet weak var tipPercentagePicker: UIPickerView!//IB Outlet
@@ -80,7 +86,8 @@ class TipPickerViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     }
     
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
-        <#code#>
+        print ("About to show the previous ViewController: TipME Settings");
+        
     }
     
     func noTipsAmounts() -> Bool {
