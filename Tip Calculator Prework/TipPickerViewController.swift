@@ -8,14 +8,13 @@
 
 import UIKit
 
-class TipPickerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+class TipPickerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UINavigationControllerDelegate {
 
     @IBOutlet weak var tipPercentagePicker: UIPickerView!//IB Outlet
     var percentagesPicks: [String] = [String]();//Create an array that will hold all the available percentages for the picker
-    
     var tipPercentagesDict = [String: AnyObject]();//This dictionary represents the possible Tip percentage values to choose from.  Loaded from 'TipPercentages.plist'
-    
     var tipPlistFormat = PropertyListSerialization.PropertyListFormat.xml;//Taking note that the plist is indeed in XML format
+    var newPercentageDefault: String?;//This string represents the new default tip selection by the user, returned back to the TipME Settings UiTableViewController to be displayed in the UITableViewCell
     
     //The Tip UIPickerView has indeed loaded
     override func viewDidLoad() {
@@ -26,6 +25,9 @@ class TipPickerViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         //Make sure that the UIPickerViewDelegate and UIPickerViewDataSource are setup
         self.tipPercentagePicker.delegate = self;
         self.tipPercentagePicker.dataSource = self;
+        
+        //Make sure to set *this* UIPickerView as the app's Navigation Controller delegate.  Needed for passing data back from the UIPickerView to the previous ViewController (the UITableViewController)
+        self.navigationController?.delegate = self;
         
         let tipfilePath: String? = Bundle.main.path(forResource: "TipPercentages", ofType: "plist");//path to 'TipPercentages.plist'
         
@@ -71,6 +73,14 @@ class TipPickerViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return( percentagesPicks[row]);
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        newPercentageDefault = percentagesPicks[row];
+    }
+    
+    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+        <#code#>
     }
     
     func noTipsAmounts() -> Bool {

@@ -91,7 +91,7 @@
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="qBa-uo-b9E">
                                 <rect key="frame" x="311" y="7" width="83" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Tip Settings">
+                                <state key="normal" title="Settings">
                                     <color key="titleColor" red="0.97115609837940764" green="1" blue="0.98758915462166053" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
@@ -117,10 +117,10 @@
             </objects>
             <point key="canvasLocation" x="659.5" y="137.5"/>
         </scene>
-        <!--Tip Settings-->
+        <!--TipME Settings-->
         <scene sceneID="A9i-6c-l96">
             <objects>
-                <tableViewController title="Tip Settings" id="GTb-Q0-lUM" customClass="TipMETableViewController" customModule="TipME" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="TipME Settings" id="GTb-Q0-lUM" customClass="TipMETableViewController" customModule="TipME" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="Hh1-Mf-A77">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -175,9 +175,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <pickerView contentMode="scaleToFill" misplaced="YES" id="eoI-xC-ie8">
-                                <rect key="frame" x="0.0" y="118" width="414" height="216"/>
+                                <rect key="frame" x="0.0" y="246" width="414" height="216"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             </pickerView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Select Default Tip Percentage:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ftj-Gu-uCn">
+                                <rect key="frame" x="99" y="162" width="245" height="46"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
