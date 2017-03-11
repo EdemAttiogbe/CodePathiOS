@@ -13,6 +13,8 @@ class TipMETableViewController: UITableViewController {
     
     @IBOutlet weak var tipAmountDisplay: UILabel!
     
+    let dataLayer: TipPercentageDataModelSingleton = TipPercentageDataModelSingleton.tipPercentageSharedDataModel;//The data layer
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -22,10 +24,10 @@ class TipMETableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
-        self.title = "TipME Settings";
-        tipAmountDisplay.text = "Default Amount >";
-        print("TipME settings screen has loaded");
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "TipPercentageCell");
+        self.title = "TipME Settings";
+        tipAmountDisplay.text = dataLayer.tipPercentData.defaultTipPercentage;
+        print("TipME Settings: Screen has loaded");
     }
     
     override func didReceiveMemoryWarning() {
@@ -44,7 +46,7 @@ class TipMETableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
         
-        print("About to perform a segue to the Tip Picker");
+        print("TipME Settings: About to perform a segue to the Tip Picker");
         self.performSegue(withIdentifier: "tipPickerSegue", sender: self);//preform the transition to the Tip Picker if the 'Tip Amount' row is pressed
     }
 

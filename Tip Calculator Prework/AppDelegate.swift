@@ -12,11 +12,54 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
-
+    
+    var tipPercentagesDict = [String: AnyObject]();//This dictionary represents the possible Tip percentage values to choose from.  Loaded from 'TipPercentages.plist'
+    var tipPlistFormat = PropertyListSerialization.PropertyListFormat.xml;//Taking note that the plist is indeed in XML format
+    let dataLayer: TipPercentageDataModelSingleton = TipPercentageDataModelSingleton.tipPercentageSharedDataModel;//The data layer
+    let tipDefaults = UserDefaults.standard;//The NSUserDefault dictionary
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        //This code loads all tips percentages from a plist file
+        let tipfilePath: String? = Bundle.main.path(forResource: "TipPercentages", ofType: "plist");//path to 'TipPercentages.plist'
+        
+        if let path = tipfilePath {
+            
+            print("AppDeletage: Obtained path to TipPercentages plist file: \(tipfilePath ?? "No Plist Found")");
+            let tipPercentageXMLData = FileManager.default.contents(atPath: path)!//Obtain the XML data representation of the Tip Percentagages plist file
+            
+            do{//Convert the Tip Percentages plist into a Dictionary
+                tipPercentagesDict = try PropertyListSerialization.propertyList(from: tipPercentageXMLData, options: .mutableContainersAndLeaves, format: &tipPlistFormat) as! [String: AnyObject];
+                print("AppDeletage: Added all the available tip percentages into a Dictionary from the plist");
+            }
+            catch{
+                print("AppDeletage: Error converting TipPercentages plist into a Dictionary: \(error), format: \(tipPercentageXMLData)");
+            }
+            
+            //Load the tip Amounts into an array
+            let anyTipAmounts = noTipsAmounts();
+            let tipKeys: [String]? = Array(tipPercentagesDict.keys);
+            var defaultTip: String = tipKeys![0];//Iniitially, set the default selected tip to the first one found from the tip dictionary
+            var defaultTipFound: Bool = false;//No default tip initially found (have't tried a look up in NSUserDefaults yet)
+            if !anyTipAmounts{
+                
+                if tipDefaults.bool(forKey: dataLayer.tipPercentData.defaultTipPercentageKey){ defaultTip = tipDefaults.string(forKey: dataLayer.tipPercentData.defaultTipPercentageKey)!; defaultTipFound = true; print("AppDeletage: Found default tip value from UserDefaults.....setting to data model...default tip percent: \(defaultTip)");}
+                if( !defaultTipFound ){ tipDefaults.set(defaultTip, forKey: dataLayer.tipPercentData.defaultTipPercentageKey); print("AppDeletage: Didn't find default tip value from UserDefaults...will choose default value from TipPercentages dictionary...new default tip percent: \(defaultTip)"); }//If no default tip exists in NSUserDefaults, set one
+                dataLayer.setup(tipDefault: defaultTip, tipDictionary: tipPercentagesDict);//Send the default selected tip, as well as all avaible tips, to the data model
+            }
+        }
+        else{
+            
+        }
+        
         return true
+    }
+    
+    func noTipsAmounts() -> Bool {//Check if the Tip Percentages Dictionary is empty
+        if tipPercentagesDict.isEmpty{ print("AppDeletage: No Tip values found from attempted load from plist!!"); return true; }
+        else{ print("AppDeletage: Tip values found and successfully loaded into dictionary from plist"); return false; }
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
@@ -27,6 +70,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidEnterBackground(_ application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        
+        dataLayer.updateObserver();//Update the Notification to make sure the default tip percentage selected is saved
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
@@ -38,9 +83,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
-        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground
+        
+        dataLayer.updateObserver();//Update the Notification to make sure the default tip percentage selected is saved
     }
-
-
 }
 

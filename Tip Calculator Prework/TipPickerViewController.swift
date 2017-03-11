@@ -17,48 +17,41 @@ import UIKit
 class TipPickerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UINavigationControllerDelegate {
 
     @IBOutlet weak var tipPercentagePicker: UIPickerView!//IB Outlet
+    
+    let dataLayer: TipPercentageDataModelSingleton = TipPercentageDataModelSingleton.tipPercentageSharedDataModel;//The data layer
+    
     var percentagesPicks: [String] = [String]();//Create an array that will hold all the available percentages for the picker
-    var tipPercentagesDict = [String: AnyObject]();//This dictionary represents the possible Tip percentage values to choose from.  Loaded from 'TipPercentages.plist'
-    var tipPlistFormat = PropertyListSerialization.PropertyListFormat.xml;//Taking note that the plist is indeed in XML format
     var newPercentageDefault: String?;//This string represents the new default tip selection by the user, returned back to the TipME Settings UiTableViewController to be displayed in the UITableViewCell
     
     //The Tip UIPickerView has indeed loaded
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         // Do any additional setup after loading the view.
         
         //Make sure that the UIPickerViewDelegate and UIPickerViewDataSource are setup
         self.tipPercentagePicker.delegate = self;
         self.tipPercentagePicker.dataSource = self;
         
+        self.tipPercentagePicker.showsSelectionIndicator = true;//Show the selection indicator
+        
         //Make sure to set *this* UIPickerView as the app's Navigation Controller delegate.  Needed for passing data back from the UIPickerView to the previous ViewController (the UITableViewController)
         self.navigationController?.delegate = self;
         
-        let tipfilePath: String? = Bundle.main.path(forResource: "TipPercentages", ofType: "plist");//path to 'TipPercentages.plist'
+        let tipPercentageKeys: [String] = Array(dataLayer.tipPercentData.tipDict.keys);
+        for tipAmounts in tipPercentageKeys{
+            percentagesPicks.append(tipAmounts);
+        }
+        print("TipMe Picker: Added tip amounts to tip picker: \(percentagesPicks)");
+        print(percentagesPicks);
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
         
-        if let path = tipfilePath {
-            print("Obtained path to TipPercentages plist file: \(tipfilePath ?? "No Plist Found")");
-            let tipPercentageXMLData = FileManager.default.contents(atPath: path)!//Obtain the XML data representation of the Tip Percentagages plist file
-            
-            do{//Convert the Tip Percentages plist into a Dictionary
-                tipPercentagesDict = try PropertyListSerialization.propertyList(from: tipPercentageXMLData, options: .mutableContainersAndLeaves, format: &tipPlistFormat) as! [String: AnyObject];
-                print("Added all the available tip percentages into a Dictionary");
-            }
-            catch{
-                print("Error converting TipPercentages plist into a Dictionary: \(error), format: \(tipPercentageXMLData)");
-                
-            }
-            
-            //Load the tip Amounts into an array
-            let anyTipAmounts = noTipsAmounts();
-            if !anyTipAmounts{
-                for tipAmounts in tipPercentagesDict.keys{
-                    percentagesPicks.append(tipAmounts);
-                }
-                print("Added tip amounts to tip picker");
-                print(percentagesPicks);
-            }
+        //Set Picker selection to default tip percentage
+        for pickerItem in 0 ..< self.percentagesPicks.count{//Select the default tip percentage automatically
+            let pickTitle: String = self.percentagesPicks[pickerItem];
+            if (dataLayer.tipPercentData.defaultTipPercentage == pickTitle){ self.tipPercentagePicker.selectRow(pickerItem, inComponent: 0, animated: true); newPercentageDefault = self.percentagesPicks[pickerItem];}
+            print("TipMe Picker: Setting selected picker item according to default tip percentage: \(self.percentagesPicks[pickerItem])");
         }
     }
 
@@ -86,15 +79,14 @@ class TipPickerViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     }
     
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
-        print ("About to show the previous ViewController: TipME Settings");
-        
+        print ("TipMe Picker: About to show the previous ViewController: TipME Settings");
+        if let tipMETableViewController = viewController as? TipMETableViewController {
+            tipMETableViewController.tipAmountDisplay.text = newPercentageDefault;// using delegation to pass the newly selected default tip value back to the TableViewControler
+            //Update the Data Model
+            dataLayer.updateDefaultTipPercentage(defaultTipVal: newPercentageDefault!);
+            dataLayer.updateObserver();
+        }
     }
-    
-    func noTipsAmounts() -> Bool {
-        if tipPercentagesDict.isEmpty{ return true; }
-        else{ return false; }
-    }
-
     /*
     // MARK: - Navigation
 
