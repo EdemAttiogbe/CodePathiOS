@@ -112,7 +112,6 @@ class TipPercentageDataModelSingleton: NSObject {
         //edit this code to save your custom properties
         tipDefaults.set(self.tipPercentData.defaultTipPercentage, forKey: self.tipPercentData.defaultTipPercentageKey);
         //-----------------------------------------------------------------------------
-        
         //Tell NSUserDefaults to save to disk now.
         tipDefaults.synchronize();
     }

@@ -46,7 +46,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             if !anyTipAmounts{
                 
                 if tipDefaults.bool(forKey: dataLayer.tipPercentData.defaultTipPercentageKey){ defaultTip = tipDefaults.string(forKey: dataLayer.tipPercentData.defaultTipPercentageKey)!; defaultTipFound = true; print("AppDeletage: Found default tip value from UserDefaults.....setting to data model...default tip percent: \(defaultTip)");}
-                if( !defaultTipFound ){ tipDefaults.set(defaultTip, forKey: dataLayer.tipPercentData.defaultTipPercentageKey); print("AppDeletage: Didn't find default tip value from UserDefaults...will choose default value from TipPercentages dictionary...new default tip percent: \(defaultTip)"); }//If no default tip exists in NSUserDefaults, set one
+                if( !defaultTipFound ){ tipDefaults.set(defaultTip, forKey: dataLayer.tipPercentData.defaultTipPercentageKey); tipDefaults.synchronize(); print("AppDeletage: Didn't find default tip value from UserDefaults...will choose default value from TipPercentages dictionary...new default tip percent: \(defaultTip)"); }//If no default tip exists in NSUserDefaults, set one
                 dataLayer.setup(tipDefault: defaultTip, tipDictionary: tipPercentagesDict);//Send the default selected tip, as well as all avaible tips, to the data model
             }
         }
