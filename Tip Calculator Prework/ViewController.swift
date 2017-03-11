@@ -44,7 +44,8 @@ class ViewController: UIViewController {
             if (dataLayer.tipPercentData.defaultTipPercentage == segTitle){ self.tipControl.selectedSegmentIndex = segment; }
         }
         print("Main View: Found and set the default Tip Percentage in the Segmented Control: \(self.tipControl.titleForSegment(at: self.tipControl.selectedSegmentIndex)!)");
-
+        
+        self.calculateTipHelper();//Calculate the tip automatically, based on what is selected
     }
 
     override func didReceiveMemoryWarning() {
@@ -60,6 +61,11 @@ class ViewController: UIViewController {
     
     @IBAction func calculateTip(_ sender: AnyObject) {
         
+        self.calculateTipHelper();
+    }
+    
+    func calculateTipHelper(){
+        
         let bill: Double = Double(billField.text!) ?? 0.00;
         let tip: Double = bill * dataLayer.tipPercentData.tipDict[self.tipControl.titleForSegment(at: self.tipControl.selectedSegmentIndex)!]!;
         print("Main View: Computed bill amount: \(bill)");
@@ -67,7 +73,5 @@ class ViewController: UIViewController {
         print("Main View: Computed total amount: \(total)");
         tipValue.text = String(format: "$%.2f", tip);
         totalValue.text = String(format: "$%.2f", total);
-        
-        
     }
 }
