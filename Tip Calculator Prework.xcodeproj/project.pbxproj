@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		736DDC1D1E758C9E00E73461 /* Dollar-Sign.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 736DDC1B1E758C9E00E73461 /* Dollar-Sign.xcassets */; };
+		736DDC1E1E758C9E00E73461 /* DollarSignView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 736DDC1C1E758C9E00E73461 /* DollarSignView.swift */; };
 		73C743881E6BF64800BA978A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C743871E6BF64800BA978A /* AppDelegate.swift */; };
 		73C7438A1E6BF64800BA978A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C743891E6BF64800BA978A /* ViewController.swift */; };
 		73C7438D1E6BF64800BA978A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73C7438B1E6BF64800BA978A /* Main.storyboard */; };
@@ -19,6 +21,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		736DDC1B1E758C9E00E73461 /* Dollar-Sign.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Dollar-Sign.xcassets"; sourceTree = "<group>"; };
+		736DDC1C1E758C9E00E73461 /* DollarSignView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DollarSignView.swift; sourceTree = "<group>"; };
 		73C743841E6BF64800BA978A /* TipME.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TipME.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73C743871E6BF64800BA978A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		73C743891E6BF64800BA978A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -43,9 +47,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		736DDC1F1E758CAA00E73461 /* Animations */ = {
+			isa = PBXGroup;
+			children = (
+				736DDC1B1E758C9E00E73461 /* Dollar-Sign.xcassets */,
+				736DDC1C1E758C9E00E73461 /* DollarSignView.swift */,
+			);
+			name = Animations;
+			sourceTree = "<group>";
+		};
 		73C7437B1E6BF64800BA978A = {
 			isa = PBXGroup;
 			children = (
+				736DDC1F1E758CAA00E73461 /* Animations */,
 				73C743861E6BF64800BA978A /* Tip Calculator Prework */,
 				73C743851E6BF64800BA978A /* Products */,
 			);
@@ -137,6 +151,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				73C743A01E6DD89900BA978A /* TipPercentages.plist in Resources */,
+				736DDC1D1E758C9E00E73461 /* Dollar-Sign.xcassets in Resources */,
 				73C743921E6BF64800BA978A /* LaunchScreen.storyboard in Resources */,
 				73C7438F1E6BF64800BA978A /* Assets.xcassets in Resources */,
 				73C7438D1E6BF64800BA978A /* Main.storyboard in Resources */,
@@ -153,6 +168,7 @@
 				73D7735E1E734DE000BFD01C /* TipPercentageDataModelSingleton.swift in Sources */,
 				73C7438A1E6BF64800BA978A /* ViewController.swift in Sources */,
 				73C743A21E6DDBE300BA978A /* TipMETableViewController.swift in Sources */,
+				736DDC1E1E758C9E00E73461 /* DollarSignView.swift in Sources */,
 				73C743881E6BF64800BA978A /* AppDelegate.swift in Sources */,
 				73C7439E1E6D800E00BA978A /* TipPickerViewController.swift in Sources */,
 			);

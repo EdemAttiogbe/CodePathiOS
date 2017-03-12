@@ -21,14 +21,6 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Dollar Sign" id="UTH-J0-90y">
-                                <rect key="frame" x="142" y="437" width="130" height="150"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Dollar Sign" id="ffi-TN-bIh">
-                                <rect key="frame" x="20" y="437" width="130" height="150"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Bill............................" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="OfW-Dy-jzn">
                                 <rect key="frame" x="95" y="254" width="152" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -91,10 +83,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Dollar Sign" id="d0I-eD-LNw">
-                                <rect key="frame" x="264" y="437" width="130" height="150"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
@@ -119,9 +107,6 @@
                     </navigationItem>
                     <connections>
                         <outlet property="billField" destination="Yc8-iO-HDO" id="FLN-8c-BXo"/>
-                        <outlet property="dollarSignOne" destination="ffi-TN-bIh" id="hWh-vt-6Nk"/>
-                        <outlet property="dollarSignThree" destination="UTH-J0-90y" id="B2z-b1-Xp6"/>
-                        <outlet property="dollarSignTwo" destination="d0I-eD-LNw" id="YZN-CE-a2k"/>
                         <outlet property="tipControl" destination="WGV-Ps-Lmc" id="l3Q-FU-hnk"/>
                         <outlet property="tipValue" destination="BWC-f3-ht7" id="hkw-T5-WNV"/>
                         <outlet property="totalValue" destination="9Bn-mJ-rUl" id="2rV-sA-DQK"/>
@@ -144,6 +129,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <imageView key="tableFooterView" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Main BackGround" id="WQG-uL-RUt">
+                            <rect key="frame" x="0.0" y="117.33333333333337" width="414" height="551"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </imageView>
                         <sections>
                             <tableViewSection headerTitle="TipME Settings" id="EFU-SA-V4s">
                                 <cells>
@@ -193,6 +182,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Main BackGround" id="1hU-5t-Gba">
+                                <rect key="frame" x="-3" y="-234" width="414" height="970"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                             <pickerView contentMode="scaleToFill" misplaced="YES" id="eoI-xC-ie8">
                                 <rect key="frame" x="0.0" y="246" width="414" height="216"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
@@ -241,7 +234,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Dollar Sign" width="216" height="209"/>
         <image name="Main BackGround" width="414" height="736"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
