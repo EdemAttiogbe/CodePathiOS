@@ -15,6 +15,11 @@ class ViewController: UIViewController {
     @IBOutlet weak var billField: UITextField!
     @IBOutlet weak var tipControl: UISegmentedControl!
     
+    @IBOutlet weak var dollarSignOne: UIImageView!
+    @IBOutlet weak var dollarSignTwo: UIImageView!
+    @IBOutlet weak var dollarSignThree: UIImageView!
+    
+    
     let dataLayer: TipPercentageDataModelSingleton = TipPercentageDataModelSingleton.tipPercentageSharedDataModel;//The data layer
     
     override func viewDidLoad() {
