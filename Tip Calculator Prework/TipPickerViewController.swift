@@ -76,6 +76,7 @@ class TipPickerViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         newPercentageDefault = percentagesPicks[row];
+        print("TipMe Picker: New selected Tip Percentage default value: \(newPercentageDefault!)");
     }
     
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
