@@ -19,10 +19,12 @@ class TipPercentageDataModelSingleton: NSObject {
     struct TipPercentageData{
         
         var defaultTipPercentage: String;//Used to set the default tip percentage key in the NSUserDefaults Defaults dictionary
-        let defaultTipPercentageKey: String = "DefaultTipKey";//Used to define and look up a key in NSUserDefaults dictionary for default tip percentage
+        let defaultTipPercentageKey: String;//Used to define and look up a key in NSUserDefaults dictionary for default tip percentage
         var tipDict = [String: Double]();//This dictionary represents the Tip Percentages that can be loaded from TipPercentages Plist.
+        var billAmount: Double;//used to persist the bill amount
+        let persistedBillAmountKey: String;//Used to look up the currently saved bill amount in the NSUserDefaults dictionary
     }
-    var tipPercentData = TipPercentageData(defaultTipPercentage: "Nothing", tipDict: [:]);//Initialized Tip Percentage Data Model
+    var tipPercentData = TipPercentageData(defaultTipPercentage: "Nothing", defaultTipPercentageKey: "DefaultTipKey", tipDict: [:], billAmount: 0.00, persistedBillAmountKey: "PersistedBillAmountKey");//Initialized Tip Percentage Data Model
 
     //When the app goes to the background, this background observer object will save the currently selected tip percentage as the default.
     var goToBackgroundObserver: AnyObject?
@@ -77,6 +79,7 @@ class TipPercentageDataModelSingleton: NSObject {
             //This code saves the singleton's properties to NSUserDefaults.
             //edit this code to save your custom properties
             defaults.set(self.tipPercentData.defaultTipPercentage, forKey: self.tipPercentData.defaultTipPercentageKey);
+            defaults.set(self.tipPercentData.billAmount, forKey: self.tipPercentData.persistedBillAmountKey);
             //-----------------------------------------------------------------------------
             
             //Tell NSUserDefaults to save to disk now.
@@ -86,22 +89,29 @@ class TipPercentageDataModelSingleton: NSObject {
 
     }
     
-    func updateDefaultTipPercentage(defaultTipVal: String){
+    func updateDefaultTipPercentage(){
         
-        self.tipPercentData.defaultTipPercentage = defaultTipVal;
         let tipDefaults = UserDefaults.standard;
         tipDefaults.set(self.tipPercentData.defaultTipPercentage, forKey: self.tipPercentData.defaultTipPercentageKey);
         tipDefaults.synchronize();
         print("DataModel: Updated UserDefault dictionary with new default tip value......\(String(describing: tipDefaults.string(forKey: self.tipPercentData.defaultTipPercentageKey)))");
     }
 
-    func updateObserver(){
+    func updateObserver(){//Update the NSNotification observer that listens to 'UIApplicationDidEnterBackground'  by removing it and subsequently re-creating it
         
         //Remove any observers in the data model
         NotificationCenter.default.removeObserver(self);
         //Add an obsever for the UIApplicationDidEnterBackgroundNotification. When the app goes to the background, the code block saves our properties to NSUserDefaults
         NotificationCenter.default.addObserver(forName: NSNotification.Name.UIApplicationDidEnterBackground, object: nil, queue: nil, using: self.processNotification(notify:));
         print("DataModel: Update of observer for application entering background complete");
+    }
+    
+    func updateBillAmount(){//Update the UserDefaults dictionary will the current bill amount.  Used in case the app restarts
+        
+        let tipDefaults = UserDefaults.standard;//Obtain the UserDefaults dictionary
+        tipDefaults.set(self.tipPercentData.billAmount, forKey: self.tipPercentData.persistedBillAmountKey);
+        tipDefaults.synchronize();
+        print("DataModel: Updating UserDefault dictionary with new bill amount.......\(self.tipPercentData.billAmount)");
     }
     
     func processNotification(notify: Notification!){
@@ -111,6 +121,7 @@ class TipPercentageDataModelSingleton: NSObject {
         //This code saves the singleton's properties to NSUserDefaults.
         //edit this code to save your custom properties
         tipDefaults.set(self.tipPercentData.defaultTipPercentage, forKey: self.tipPercentData.defaultTipPercentageKey);
+        tipDefaults.set(self.tipPercentData.billAmount, forKey: self.tipPercentData.persistedBillAmountKey);
         //-----------------------------------------------------------------------------
         //Tell NSUserDefaults to save to disk now.
         tipDefaults.synchronize();

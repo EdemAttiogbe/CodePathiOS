@@ -61,7 +61,6 @@ class ViewController: UIViewController {
     @IBAction func onTap(_ sender: Any) {
         
         view.endEditing(true);
-        //Check which Tip value is selected, and animate the
     }
     
     @IBAction func calculateTip(_ sender: AnyObject) {
@@ -72,6 +71,7 @@ class ViewController: UIViewController {
     func calculateTipHelper(){
         
         let bill: Double = Double(billField.text!) ?? 0.00;
+        dataLayer.tipPercentData.billAmount = bill;
         let tip: Double = bill * dataLayer.tipPercentData.tipDict[self.tipControl.titleForSegment(at: self.tipControl.selectedSegmentIndex)!]!;
         print("Main View: Computed bill amount: \(bill)");
         let total: Double = bill + tip;
