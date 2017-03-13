@@ -14,6 +14,7 @@ class TipMETableViewController: UITableViewController {
     @IBOutlet weak var tipAmountDisplay: UILabel!
     
     let dataLayer: TipPercentageDataModelSingleton = TipPercentageDataModelSingleton.tipPercentageSharedDataModel;//The data layer
+    var tempAmountDisplay: UILabel?;
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,10 +24,10 @@ class TipMETableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-        
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "TipPercentageCell");
+        
         self.title = "TipME Settings";
-        tipAmountDisplay.text = dataLayer.tipPercentData.defaultTipPercentage;
+        tempAmountDisplay = nil;
         print("TipME Settings: Screen has loaded");
     }
     
@@ -58,6 +59,13 @@ class TipMETableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = self.tableView.dequeueReusableCell(withIdentifier: "TipPercentageCell", for: indexPath);
+        //self.tempAmountDisplay = cell.contentView.viewWithTag(2) as? UILabel;
+        //self.tempAmountDisplay?.text = dataLayer.tipPercentData.defaultTipPercentage;
+        //self.tipAmountDisplay = self.tempAmountDisplay;
+        /**let objFromNib: Array? = Bundle.main.loadNibNamed("TipPercentageCell", owner: nil, options: nil);
+        if let objFromNibUnwrapped: Array = objFromNib{
+            cell = objFromNibUnwrapped[0] as! UITableViewCell;
+        }*/
         return(cell);
     }
 

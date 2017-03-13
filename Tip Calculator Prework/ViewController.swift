@@ -41,6 +41,7 @@ class ViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         
+        self.billField.becomeFirstResponder();
         //Select the default tip percentage automatically
         for segment in 0 ..< self.tipControl.numberOfSegments{
             let segTitle: String = self.tipControl.titleForSegment(at: segment)!;
