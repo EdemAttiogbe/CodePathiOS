@@ -15,11 +15,10 @@ class ViewController: UIViewController {
     @IBOutlet weak var billField: UITextField!
     @IBOutlet weak var tipControl: UISegmentedControl!
     
-    @IBOutlet weak var dollarSignOne: UIImageView!
-    @IBOutlet weak var dollarSignTwo: UIImageView!
-    @IBOutlet weak var dollarSignThree: UIImageView!
-    
-    
+    @IBOutlet weak var dollarSignLeft: DollarSignView!
+    @IBOutlet weak var dollarSignMiddle: DollarSignView!
+    @IBOutlet weak var dollarSignRight: DollarSignView!
+
     let dataLayer: TipPercentageDataModelSingleton = TipPercentageDataModelSingleton.tipPercentageSharedDataModel;//The data layer
     
     override func viewDidLoad() {
@@ -54,14 +53,15 @@ class ViewController: UIViewController {
     }
 
     override func didReceiveMemoryWarning() {
+        //Dispose of any resources that can be recreated.
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
 
     @IBAction func onTap(_ sender: Any) {
         
         view.endEditing(true);
+        //Check which Tip value is selected, and animate the
     }
     
     @IBAction func calculateTip(_ sender: AnyObject) {
@@ -78,5 +78,21 @@ class ViewController: UIViewController {
         print("Main View: Computed total amount: \(total)");
         tipValue.text = String(format: "$%.2f", tip);
         totalValue.text = String(format: "$%.2f", total);
+        
+        // Based on the selected Tip, animate either 'dollarSignLeft', 'dollarSignMiddle', or 'dollarSignRight'
+        switch self.tipControl.selectedSegmentIndex{
+            
+        case 0:
+            self.dollarSignLeft.addJiggleAnimation();
+            print("Main View: Animating first dollar sign");
+        case 1:
+            self.dollarSignMiddle.addJiggleAnimation();
+            print("Main View: Animating middle dollar sign");
+        case 2:
+            self.dollarSignRight.addJiggleAnimation();
+            print("Main View: Animating last dollar sign");
+        default:
+            print("Main View: No dollar sign to animate");
+        }
     }
 }
