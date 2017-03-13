@@ -81,6 +81,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         dataLayer.updateObserver();
         dataLayer.updateBillAmount();
         dataLayer.updateDefaultTipPercentage();
+        print("AppDelegate: TipME is about to move into an in-active state");
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
@@ -90,14 +91,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         dataLayer.updateObserver();//Update the Notification to make sure the default tip percentage selected is saved
         dataLayer.updateBillAmount();
         dataLayer.updateDefaultTipPercentage();
+        print("AppDelegate: TipME just entered the background");
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
+        
+        self.loadTipAndBillAmounts();
+        print("AppDelegate: TipME will enter the foreground");
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
@@ -106,6 +112,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         dataLayer.updateObserver();//Update the Notification to make sure the default tip percentage selected is saved
         dataLayer.updateBillAmount();
         dataLayer.updateDefaultTipPercentage();
+        print("AppDelegate: TipME is about to quit");
     }
 }
 

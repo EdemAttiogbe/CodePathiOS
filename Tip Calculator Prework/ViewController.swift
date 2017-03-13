@@ -37,7 +37,6 @@ class ViewController: UIViewController {
             segmentCounter += 1;
         }
         print("Main View: Added all Tip Percentages from data model: \(tipPercentageKeys)");
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -48,6 +47,9 @@ class ViewController: UIViewController {
             if (dataLayer.tipPercentData.defaultTipPercentage == segTitle){ self.tipControl.selectedSegmentIndex = segment; }
         }
         print("Main View: Found and set the default Tip Percentage in the Segmented Control: \(self.tipControl.titleForSegment(at: self.tipControl.selectedSegmentIndex)!)");
+        
+        self.billField.text = String(dataLayer.tipPercentData.billAmount);
+        print ("Main View: Added last persisted bill amount from data model: \(String(describing: self.billField.text))");
         
         self.calculateTipHelper();//Calculate the tip automatically, based on what is selected
     }
