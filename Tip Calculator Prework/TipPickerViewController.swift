@@ -85,9 +85,10 @@ class TipPickerViewController: UIViewController, UIPickerViewDelegate, UIPickerV
             tipMETableViewController.tipAmountDisplay.text = newPercentageDefault;// using delegation to pass the newly selected default tip value back to the TableViewControler
             
             //Update the Data Model
-            dataLayer.tipPercentData.defaultTipPercentage = newPercentageDefault!;
-            dataLayer.updateDefaultTipPercentage();
-            dataLayer.updateObserver();
+        //print ("TipMe Picker: About to move back to the Main View: TipME Settings")
+        dataLayer.tipPercentData.defaultTipPercentage = newPercentageDefault!;
+        dataLayer.updateDefaultTipPercentage();
+        dataLayer.updateObserver();
         }
     }
     /*
